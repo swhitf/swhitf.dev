@@ -1,7 +1,7 @@
 ---
 interface Props {
   href: string;
-  icon?: 'favicon' | 'color' | 'emoji';
+  icon?: 'favicon' | 'color' | 'emoji' | 'image';
   iconSrc?: string;
   iconColor?: string;
   iconEmoji?: string;
@@ -14,13 +14,17 @@ const { href, icon, iconSrc, iconColor, iconEmoji } = Astro.props;
   href={href}
   target="_blank"
   rel="noopener noreferrer"
-  class="inline-flex items-center gap-1 px-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors border border-white/20 hover:border-white/30 h-[1.5em]"
+  class="relative inline-flex items-center gap-1 px-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors border border-white/20 hover:border-white/30 h-[1.5em]"
+  class:list={[
+    icon === 'image' && 'pl-8',
+    icon === 'color' && 'pl-6',
+  ]}
 >
-  {icon === 'favicon' && iconSrc && (
-    <img src={iconSrc} alt="" class="w-4 h-4" />
+  {(icon === 'image') && iconSrc && (
+    <img src={iconSrc} alt="" class="absolute left-2 w-4 h-4" />
   )}
   {icon === 'color' && iconColor && (
-    <span class={`w-3 h-3 rounded-full ${iconColor}`}></span>
+    <span class={`absolute left-2 w-3 h-3 rounded-full ${iconColor}`}></span>
   )}
   {icon === 'emoji' && iconEmoji && (
     <span class="text-base leading-none">{iconEmoji}</span>
