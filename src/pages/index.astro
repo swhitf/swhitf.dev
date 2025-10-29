@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import profileImage from '../assets/me-again.jpg';
+
+const allPosts = await getCollection('blog', ({ data }) => {
+  return import.meta.env.PROD ? data.draft !== true : true;
+});
+
+const latestPost = allPosts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+)[0];
+
+function formatDate(date: Date) {
+  return new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<Layout title="Steve Whitfield - Developer">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Welcome Section -->
+    <section class="mb-16">
+      <div class="max-w-4xl mx-auto bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6 sm:p-8">
+        <div class="flex flex-col sm:flex-row gap-6 items-start">
+          <!-- Profile Image -->
+          <div class="flex-shrink-0">
+            <img
+              src={profileImage.src}
+              alt="Steve Whitfield"
+              class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg border-2 border-teal-500/30"
+            />
+          </div>
+
+          <!-- Welcome Text -->
+          <div class="flex-1">
+            <h1 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+              👋 Hello
+            </h1>
+            <p class="text-lg text-white/90 leading-relaxed">
+              Welcome to my site! Feel free to look around, read my thoughts, and check out what I've been working on.
+              <br /><br />
+              If you want to buy anything, please let me know.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest Content Grid -->
+    <section class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Latest Blog Post -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-8 hover:shadow-lg hover:border-teal-500/30 transition-all hover:-translate-y-1">
+          <div class="flex items-center gap-2 mb-4">
+            <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+            <h2 class="text-sm font-bold text-teal-400 uppercase tracking-wide">Latest from Blog</h2>
+          </div>
+
+          {latestPost ? (
+            <a href={`/blog/${latestPost.slug}`} class="block">
+              <div class="mb-2">
+                <time class="text-sm text-white/50">
+                  {formatDate(latestPost.data.pubDate)}
+                </time>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-3 hover:text-teal-400 transition-colors">
+                {latestPost.data.title}
+              </h3>
+              <p class="text-white/70 mb-4">
+                {latestPost.data.description}
+              </p>
+              <span class="text-teal-400 hover:text-teal-300 font-medium inline-flex items-center gap-2">
+                Read more
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </span>
+            </a>
+          ) : (
+            <p class="text-white/60">No blog posts yet.</p>
+          )}
+        </div>
+
+        <!-- Latest Project -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-8">
+          <div class="flex items-center gap-2 mb-4">
+            <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+            </svg>
+            <h2 class="text-sm font-bold text-teal-400 uppercase tracking-wide">Latest Project</h2>
+          </div>
+
+          <div class="flex flex-col items-center justify-center py-8">
+            <svg class="w-16 h-16 text-teal-400/30 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+            </svg>
+            <h3 class="text-xl font-bold text-white mb-2">Coming Soon</h3>
+            <p class="text-white/60 text-center mb-4">
+              Projects showcase is on the way!
+            </p>
+            <a
+              href="/projects"
+              class="text-teal-400 hover:text-teal-300 font-medium inline-flex items-center gap-2"
+            >
+              View projects
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

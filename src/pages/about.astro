@@ -1,0 +1,167 @@
+---
+import Layout from "../layouts/Layout.astro";
+import InlinePill from "../components/InlinePill.astro";
+import profileImage from "../assets/me-again.jpg";
+---
+
+<Layout title="About - Steve Whitfield">
+  <main class="max-w-7xl mx-auto px-4 py-8">
+    <!-- Hero Section -->
+    <section class="text-center mb-16">
+      <h1 class="text-5xl font-bold text-teal-400 mb-4">About Me</h1>
+      <div class="w-24 h-1 bg-teal-500 mx-auto"></div>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="mb-20">
+      <div
+        class="max-w-5xl mx-auto bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-8"
+      >
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+          <!-- Profile Image -->
+          <div class="flex-shrink-0">
+            <img
+              src={profileImage.src}
+              alt="Steve Whitfield"
+              class="w-64 h-64 object-cover rounded-lg border-2 border-teal-500/30"
+            />
+          </div>
+
+          <!-- Profile Text -->
+          <div class="flex-1">
+            <p class="text-lg text-white/90 leading-relaxed">
+              Hello, I'm Steve — Father of two & co-founder of <InlinePill
+                href="https://ludi.co"
+                icon="favicon"
+                iconSrc="https://ludi.co/favicon.ico">Ludi.co</InlinePill
+              >. I'm 38 years old. My favourite color is <InlinePill
+                href="https://en.wikipedia.org/wiki/Teal"
+                icon="color"
+                iconColor="bg-teal-500">teal</InlinePill
+              > and my favourite dinosaur is <InlinePill
+                href="https://en.wikipedia.org/wiki/Ankylosaurus"
+                icon="emoji"
+                iconEmoji="🦕">Ankylosaurus</InlinePill
+              >.
+              <br /><br /> My bad habits are biting my nails, and cooking oven food
+              on a Breville sandwich press.
+              <br /><br /> I pretend to support Crystal Palace FC, but really I don't
+              care about football.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Life Story Section -->
+    <section class="mb-16">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl font-bold text-teal-400 mb-4">My Life Story</h2>
+        <div class="w-24 h-1 bg-teal-500 mb-8"></div>
+
+        <p class="text-lg text-white/80 leading-relaxed mb-4">
+          I was born on 20th August 1987 in Rotherham, South Yorkshire.
+          Rotherham is very nice, you should go.
+        </p>
+        <p class="text-lg text-white/80 leading-relaxed mb-4">
+          On my 3rd birthday I ran away from my parents and their friends
+          singing Happy Birthday to me and locked myself in my grandparents
+          caravan.
+        </p>
+        <p class="text-lg text-white/80 leading-relaxed mb-4">
+          As a child I enjoyed sailing, computer games and collecting rare milk bottle tops. 
+          One of those is a lie but I only had two things and three is better.
+        </p>
+        <p class="text-lg text-white/80 leading-relaxed mb-4">
+          I didn't really enjoy school, and ended leaving with average grades
+          and average memories.
+        </p>
+        <p class="text-lg text-white/80 leading-relaxed mb-4">
+          I attended Nottingham Trent University, completed a placement at
+          Hewlett Packard in Germany, and graduated with a 1st class degree
+          in Software Engineering. Overall, university was good.
+        </p>
+
+        <p class="text-lg text-white/80 leading-relaxed mb-4">
+          From 2009 to 2016, I worked the following jobs:
+        </p>
+      </div>
+
+        <div class="my-4 mb-8">
+          <div class="overflow-x-auto">
+            <table class="min-w-full border border-white/10 text-white/80 text-left rounded-lg overflow-hidden">
+              <thead class="bg-teal-600/60 text-white">
+                <tr>
+                  <th class="py-2 px-3 font-semibold">Dates</th>
+                  <th class="py-2 px-3 font-semibold">Company</th>
+                  <th class="py-2 px-3 font-semibold">Role</th>
+                  <th class="py-2 px-3 font-semibold">Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="odd:bg-white/5 hover:bg-white/10 transition">
+                  <td class="py-2 px-3">2009–2010</td>
+                  <td class="py-2 px-3">Esendex</td>
+                  <td class="py-2 px-3">Junior Developer</td>
+                  <td class="py-2 px-3">Decent</td>
+                </tr>
+                <tr class="odd:bg-white/5 hover:bg-white/10 transition">
+                  <td class="py-2 px-3">2010–2011</td>
+                  <td class="py-2 px-3">Omnifone</td>
+                  <td class="py-2 px-3">Software Developer</td>
+                  <td class="py-2 px-3">Chaos (bad kind)</td>
+                </tr>
+                <tr class="odd:bg-white/5 hover:bg-white/10 transition">
+                  <td class="py-2 px-3">2011</td>
+                  <td class="py-2 px-3">TTT Money Corporation</td>
+                  <td class="py-2 px-3">Software Developer</td>
+                  <td class="py-2 px-3">Awful</td>
+                </tr>
+                <tr class="odd:bg-white/5 hover:bg-white/10 transition">
+                  <td class="py-2 px-3">2011–2014</td>
+                  <td class="py-2 px-3">Crab Creative</td>
+                  <td class="py-2 px-3">Web Developer</td>
+                  <td class="py-2 px-3">Chaos (good kind)</td>
+                </tr>
+                <tr class="odd:bg-white/5 hover:bg-white/10 transition">
+                  <td class="py-2 px-3">2014–2016</td>
+                  <td class="py-2 px-3">Chelsea Apps</td>
+                  <td class="py-2 px-3">Software Engineer & Tech Lead</td>
+                  <td class="py-2 px-3">Lucrative</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="max-w-4xl mx-auto">
+
+        <p class="text-lg text-white/80 leading-relaxed mb-4">
+          In 2016, myself and 4 others left Chelsea Apps and took our Large Global Accounting Firm client with us.
+          We setup our own consultancy and were paid handsomley for our work from 2016 until 2019.
+        </p>
+
+        <p class="text-lg text-white/80 leading-relaxed mb-4">
+          In early 2019, we wound up the consultancy and, later on that year, I launched the first version of Metro Retro.
+        </p>
+        <p class="text-lg text-white/80 leading-relaxed mb-4">
+          In 2017 I get engaged to the love of my life.
+        </p>
+        <p class="text-lg text-white/80 leading-relaxed mb-4">
+          A year later, Covid-19 caused the popularity of Metro Retro to skyrocket.  Jamie Hanratty joins as our co-founder.
+        </p>
+        <p class="text-lg text-white/80 leading-relaxed mb-4">
+          Two years later (which is WAY too long), Metro Retro took it's first paying customers.
+        </p>
+        <p class="text-lg text-white/80 leading-relaxed mb-4">
+          After scrapping for another two years, Metro Retro joins TinySeed.
+        </p>
+        <p class="text-lg text-white/80 leading-relaxed mb-4">
+          In 2025, Metro Retro rebrands as Ludi.co
+        </p>
+        <p class="text-lg text-white/80 leading-relaxed mb-4">
+          Also in 2025, I decide to make a personal website, I'll let you know how it turns out.
+        </p>
+      </div>
+    </section>
+  </main>
+</Layout>

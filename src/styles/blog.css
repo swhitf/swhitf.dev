@@ -1,0 +1,121 @@
+/* Blog post content styles */
+.blog-content {
+  color: rgb(255 255 255 / 0.9);
+  line-height: 1.75;
+}
+
+.blog-content h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: rgb(255 255 255);
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.blog-content h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgb(255 255 255);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.blog-content h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: rgb(255 255 255);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.blog-content p {
+  margin-bottom: 1.5rem;
+  font-size: 1.125rem;
+}
+
+.blog-content a {
+  color: rgb(45 212 191);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.blog-content a:hover {
+  color: rgb(94 234 212);
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin-bottom: 1.5rem;
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.blog-content ul {
+  list-style-type: disc;
+}
+
+.blog-content ol {
+  list-style-type: decimal;
+}
+
+.blog-content li {
+  font-size: 1.125rem;
+}
+
+.blog-content blockquote {
+  border-left: 4px solid rgb(20 184 166);
+  padding-left: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  color: rgb(255 255 255 / 0.7);
+}
+
+.blog-content code {
+  background-color: rgb(255 255 255 / 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  color: rgb(94 234 212);
+  font-size: 1rem;
+}
+
+.blog-content pre {
+  background-color: rgb(255 255 255 / 0.05);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.blog-content pre code {
+  background-color: transparent;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+.blog-content img {
+  border-radius: 0.5rem;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.blog-content hr {
+  border-color: rgb(255 255 255 / 0.1);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.blog-content strong {
+  font-weight: 700;
+  color: rgb(255 255 255);
+}
+
+.blog-content em {
+  font-style: italic;
+}

@@ -1,0 +1,24 @@
+---
+// Say Hello Button Component
+interface Props {
+  variant?: 'desktop' | 'mobile';
+}
+
+const { variant = 'desktop' } = Astro.props;
+
+const baseClasses = "bg-teal-500 text-white font-medium rounded-lg hover:bg-teal-600 transition-all";
+const desktopClasses = "px-6 py-2 hover:scale-105";
+const mobileClasses = "px-6 py-3 text-center w-full mt-2";
+
+const classes = variant === 'mobile'
+  ? `${baseClasses} ${mobileClasses}`
+  : `${baseClasses} ${desktopClasses}`;
+---
+
+<button
+  type="button"
+  class={classes}
+  onclick="window.openContactModal()"
+>
+  Say Hello
+</button>
