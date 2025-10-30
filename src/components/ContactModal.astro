@@ -8,12 +8,12 @@
 
   <!-- Modal Container -->
   <div class="flex min-h-full items-center justify-center p-4">
-    <div class="relative bg-[#0b0b10] border border-white/20 rounded-2xl shadow-2xl w-full max-w-lg p-8 transform transition-all">
+    <div class="relative bg-white dark:bg-[#0b0b10] border border-gray-300 dark:border-white/20 rounded-2xl shadow-2xl w-full max-w-lg p-8 transform transition-all">
       <!-- Close Button -->
       <button
         type="button"
         id="closeModal"
-        class="absolute top-4 right-4 text-white/60 hover:text-white transition-colors"
+        class="absolute top-4 right-4 text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white transition-colors"
         aria-label="Close modal"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -23,8 +23,8 @@
 
       <!-- Modal Header -->
       <div class="mb-6">
-        <h2 class="text-3xl font-bold text-white mb-2">Say Hello 👋</h2>
-        <p class="text-white/70">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Say Hello 👋</h2>
+        <p class="text-gray-600 dark:text-white/70">
           Whatever you write here will be sent to me as a DM on Slack. Feel free to leave your email if you'd like me to write back!
         </p>
       </div>
@@ -33,7 +33,7 @@
       <form id="contactForm" class="space-y-4">
         <!-- Email Input -->
         <div>
-          <label for="email" class="block text-sm font-medium text-white/80 mb-2">
+          <label for="email" class="block text-sm font-medium text-gray-700 dark:text-white/80 mb-2">
             Your Email (optional)
           </label>
           <input
@@ -41,14 +41,14 @@
             id="email"
             name="email"
             placeholder="your.email@example.com"
-            class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+            class="w-full px-4 py-3 bg-gray-100 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-500 focus:border-transparent transition-all"
           />
         </div>
 
         <!-- Message Textarea -->
         <div>
-          <label for="message" class="block text-sm font-medium text-white/80 mb-2">
-            Your Message <span class="text-red-400">*</span>
+          <label for="message" class="block text-sm font-medium text-gray-700 dark:text-white/80 mb-2">
+            Your Message <span class="text-red-600 dark:text-red-400">*</span>
           </label>
           <textarea
             id="message"
@@ -57,9 +57,9 @@
             maxlength="500"
             rows="6"
             placeholder="Hey Steve, I wanted to reach out about..."
-            class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all resize-none"
+            class="w-full px-4 py-3 bg-gray-100 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-500 focus:border-transparent transition-all resize-none"
           ></textarea>
-          <div class="text-right text-sm text-white/40 mt-1">
+          <div class="text-right text-sm text-gray-500 dark:text-white/40 mt-1">
             <span id="charCount">0</span>/500
           </div>
         </div>
@@ -69,14 +69,14 @@
           <button
             type="submit"
             id="submitButton"
-            class="flex-1 bg-teal-500 text-white px-6 py-3 font-medium rounded-lg hover:bg-teal-600 transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            class="flex-1 bg-teal-600 dark:bg-teal-500 text-white px-6 py-3 font-medium rounded-lg hover:bg-teal-700 dark:hover:bg-teal-600 transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
             Send Message
           </button>
           <button
             type="button"
             id="cancelButton"
-            class="px-6 py-3 font-medium text-white/80 hover:text-white border border-white/10 rounded-lg hover:bg-white/5 transition-all"
+            class="px-6 py-3 font-medium text-gray-700 dark:text-white/80 hover:text-gray-900 dark:hover:text-white border border-gray-300 dark:border-white/10 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-all"
           >
             Cancel
           </button>

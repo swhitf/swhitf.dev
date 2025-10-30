@@ -14,7 +14,7 @@ const { href, icon, iconSrc, iconColor, iconEmoji } = Astro.props;
   href={href}
   target="_blank"
   rel="noopener noreferrer"
-  class="relative inline-flex items-center gap-1 px-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors border border-white/20 hover:border-white/30 h-[1.5em]"
+  class="relative inline-flex items-center gap-1 px-2 bg-gray-200 dark:bg-white/10 hover:bg-gray-300 dark:hover:bg-white/20 rounded-full transition-colors border border-gray-300 dark:border-white/20 hover:border-gray-400 dark:hover:border-white/30 h-[1.5em]"
   class:list={[
     icon === 'image' && 'pl-8',
     icon === 'color' && 'pl-6',
