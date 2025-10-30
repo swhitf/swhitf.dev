@@ -1,8 +1,8 @@
 ---
 title: 'About This Website'
 description: 'Well, I had to make a first post about something...'
-pubDate: 2025-10-29
-tags: ['astro', 'web development', 'stuff']
+pubDate: 2025-10-15
+tags: ['astro', 'development', 'stuff']
 ---
 
 ## Hello there

@@ -10,3 +10,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+#logo span {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  opacity: 1;
+  transition: width 0.3s ease-out, opacity 0.3s ease-out;
+}
