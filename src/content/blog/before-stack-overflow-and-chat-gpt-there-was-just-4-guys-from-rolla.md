@@ -65,7 +65,7 @@ Today, CodeGuru.com is still online.  The site has a new modern look which, in m
 
 ![CodeGuru New vs Old](../../assets/blog/codeguru-2.jpg)
 
-Yeah, no thanks.
+Yeah, no thanks. 
 
 ## C-Sharp Corner
 
@@ -77,26 +77,24 @@ C-SharpCorner.com, from an era when hyphens in a domain name wouldn't get you in
 
 Looking at the site today, it looks so similar to CodeGuru.com I almost merged them together.  However, I liked CodeGuru.com more, so wanted to give it it's own bit.  To be fair though, C-SharpCorner.com has that sweet left navigation filled full of subject based index pages.  
 
-![CodeGuru New vs Old](../../assets/blog/c-sharpcorner.jpg)
+![Damn](../../assets/blog/c-sharpcorner.jpg)
 
 Compared to what it looks like today, which is like some kind of StackOverflow groupie trying to dress like it's idol but looking very confused and awkward.  I haven't got a screenshot of it, but you can go and see for yourself.
 
 Again, as with all these sites, the feeling from the 2025 version is that it's either dying, dead or ressurected as a Frankenstein monster of its old self.  Looking at the artcles, they are almost all written by the same handful of people.  These sites back in the day were a hive of user contributed material from across the developer community.
-
-This is the final site of the three I used to regularly end up on.  Of the three, C-SharpCorner.com is the least attractive, and I'm not sure I actively visited it or just ended up there a lot from Google search results.  Again, it's a community site full of
 
 ## SQL Authority
 
 - Domain: blog.sqlauthority.com
 - Active: 1970 - Present
 
-So this is a funny one.  blog.sqlauthority.com is an SQL Server focused blog run by a man named Pinal Dave.  I was never _into_ SQL Server enought to visit this site as a primary browsing destination, but if you had a problem with SQL Server and you Googled it, there was at least a 50% chance you'd end up on here.
+So this is a funny one — blog.sqlauthority.com is an SQL Server focused blog run by a man named Pinal Dave.  I was never into SQL Server enought to visit this site as a primary browsing destination, but if you had a problem with SQL Server and you Googled it, there was at least a 50% chance you'd end up on here.
 
 Pinal has been writing this site for as long as I can remember, and it looks like he is still writing new content for it regularly.  What is kinda awesome is that it looks _exactly_ the same as I remember it back in the 00s.  Almost brings a tear to my eye.
 
-The pager at the bottom of the index page currently says 1 of 828 pages.  Assuming it's been running 20 years, that's 5796 articles (at 7 per page), which is 290 articles per year.  Which is almost an artile every day.  For 20 years.  Damn.
-
 ![SQL Authority in all it's supreme glory](../../assets/blog/sql-authority.webp)
+
+The pager at the bottom of the index page currently says 1 of 828 pages.  Assuming it's been running 20 years, that's 5796 articles (at 7 per page), which is 290 articles per year.  Which is almost an article every day.  For 20 years.  Damn.
 
 Interestingly, you can't view blog.sqlauthority.com on Wayback Machine as it's been "excluded", so you'll just have to take my word for it that it always looked this way.
 
@@ -110,7 +108,7 @@ In case you don't know it, The Daily WTF is a daily blog chronicling amusing mis
 ## Experts Exchange
 
 - Domain: experts-exchange.com
-- Active: ??? - Present
+- Active: 1996 - Present
 
 What was that I was saying about hyphens?  Well, in this domain the hypen is doing a LOT of work.  ExpertSexchange, as people used to call it back then, is a really interesting story.  It started in the mid 1990s as a question and answer site similar to StackOverflow (but over 10 years earlier).  Growing from a student project, it became a popular website providing free services until 2004 when it shifted to a subscription based model.  This sounds normal today but at the time was very new.
 
@@ -124,16 +122,21 @@ Obviously, I did not like this website, and many in the community were pretty un
 
 I don't know the point that all these websites started to decline, but I would imagine that it was sometime around 2008 with the launch of two major entites that would go on to become huge influences on the developer world: Github.com and StackOverflow.com.
 
-While very different, these websites together ate the lunch of what a lot of sites like The Code Project provided; source code and tutorials / learning material.  StackOverflow became for a long while the defacto place you'd end up when you had any kind of problem.  While Github became the defacto home of code on the internet.  Prior to that, articles on The Code Project and other sites would include a .zip file at the end with the code examples in.
+While very different, these websites together ate the lunch of what a lot of sites like The Code Project provided; source code and tutorials / learning material.  StackOverflow became the defacto place you'd end up when you had any kind of problem.  While Github became the defacto home of code on the internet.  Prior to that, articles on The Code Project and other sites would include a .zip file at the end with the code examples in.
 
 For me, the sad reality is that we have lost something with the decline of these sites that has not been replaced by the new generation; a place to just go when you want to browse.
 
-StackOverflow obviously is having it's own issues now, and has seen a noticable drop in goodwill from the community from their (probably mistaken) push to become a wiki like site.  But even before that, I would not visit StackOverflow to _read about stuff_, I would go there because I had a problem.   Similar with Github, I would not go there to _read about stuff_, I would go there for the code.
+StackOverflow is obviously having it's own issues now, and has seen a noticable drop in goodwill from the community from overbearing rules and policies on question quality.  But even before that, I would not visit StackOverflow to _read about stuff_, I would go there because I had a problem.   Similar with Github, I would not go there to _read about stuff_, I would go there for the code.
 
-When I used to browse The Code Project, it was like picking up a magazine and just flicking through.  There was just stuff there, it was code related, it was interested, you could learn from it, you could just dip in and out.  You could be certain on each visit that you were going to find something interesting to read and learn something you didn't know.  There was no politics, no business, no economics, just geeks writing about geek stuff.
+When I used to browse The Code Project, it was like picking up a magazine and just flicking through.  There was just stuff there, it was code related, it was interesting, you could learn from it, you could just dip in and out.  You could be certain on each visit that you were going to find something interesting to read and learn something you didn't know.  There was no politics, no business, no economics, just geeks writing about geek stuff.
 
-Where do I go for that now?  Reddit?  Hackernews?  Dev.to is maybe the closest thing I can think of that is alive today, but I can't really get into it and I'm not sure why.  Maybe it's the modern presentation which is very "5 reasons why you want to click this" focused.  Maybe it's something else.
+Where do I go for that now?  Reddit?  Hackernews?  
 
-Writing this piece has been bittersweet for me.  It was genuinely warming to see that garish orange of The Code Project once again and briefly browse it's pages.  The thing is, looking at something on archive.org is like watching a video of a passed love one.  You can see them, and hear them, but you can't talk to them, and they aren't really there.
+Dev.to is maybe the closest thing I can think of that is alive today, but I can't really get into it and I'm not sure why.  Maybe it's the modern presentation which is very "5 reasons why you want to click this" focused.  Maybe it's something else.
+
+Writing this piece has been bittersweet for me.  It was genuinely warming to see that garish orange of The Code Project once again and briefly browse it's pages.  The thing is, looking at something on archive.org is like watching a video of a passed love one.  You can see them, and hear them, but you can't talk to them, and they aren't really there.  It's just a glimpse.
 
 Still, what an amazing resource we have with the Wayback Machine.  Even if it isn't _the same_, it's amazing to be able to go and see something you remember like it once was.  So thank you to the amazing people that make that resource available, and if you haven't before, [please consider donating](https://archive.org/donate?origin=iawww-TopNavDonateButton).
+
+If you got this far,  thanks for reading.  
+Steve
