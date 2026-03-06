@@ -3,7 +3,7 @@ title: 'Before Stack Overflow, we had 4 Guys From Rolla'
 description: 'A trip down memory lane, remembering The Code Project, 4 Guys From Rolla & C-Sharp Corner.  The sites from the age before Stack Overflow and AI that taught me to code.'
 pubDate: 2025-10-31
 tags: ['development', 'nostalgia', 'stuff']
-draft: true
+draft: false
 ---
 
 For the last few years, I've really started to notice that I'm getting old.  I don't mean that my knees are starting to ache or anything like that, but more and more I'm interacting with people where the age gap between us is enough that I'll mention an actor, TV show or website and just get a blank look back at me.  Then the realisation sets in that I'm talking about something from 15 years ago when they were probably 10 years old.  
