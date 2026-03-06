@@ -12,7 +12,7 @@ const { file, options, buildId } = Astro.props;
 const filePath = path.resolve('src/assets/demos', file);
 const json = fs.readFileSync(filePath, 'utf-8');
 const inject = Buffer.from(json).toString('base64');
-const params = options ? `${options}&inject=${inject}` : `inject=${inject}`;
+const params = options ? `${options}&inject=${inject}&camera=auto` : `inject=${inject}&camera=auto`;
 const base = buildId ? `https://a.ludi.co/kiosk/${buildId}/index.html` : 'http://localhost:8080';
 const src = `${base}?${params}`;
 ---
