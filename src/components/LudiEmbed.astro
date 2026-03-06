@@ -1,0 +1,26 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+interface Props {
+    file: string;
+    options?: string;
+    buildId?: string;
+}
+
+const { file, options, buildId } = Astro.props;
+const filePath = path.resolve('src/assets/demos', file);
+const json = fs.readFileSync(filePath, 'utf-8');
+const inject = Buffer.from(json).toString('base64');
+const params = options ? `${options}&inject=${inject}` : `inject=${inject}`;
+const base = buildId ? `https://a.ludi.co/kiosk/${buildId}/index.html` : 'http://localhost:8080';
+const src = `${base}?${params}`;
+---
+<div style="position:relative;">
+  <iframe style="border:0; width:100%; aspect-ratio:16/9;" src={src} tabindex="-1" loading="lazy" allowfullscreen allowtransparency></iframe>
+  {import.meta.env.DEV && (
+    <a href={src} target="_blank" rel="noopener" style="position:absolute; top:8px; right:8px; padding:4px 8px; background:rgba(0,0,0,0.7); color:#fff; font-size:12px; border-radius:4px; text-decoration:none;">
+      Open in new tab
+    </a>
+  )}
+</div>

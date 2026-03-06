@@ -1,5 +1,5 @@
 ---
-title: 'TheCodeProject.com & The Pre-Stack Overflow Era'
+title: 'Before Stack Overflow, we had 4 Guys From Rolla'
 description: 'A trip down memory lane, remembering The Code Project, 4 Guys From Rolla & C-Sharp Corner.  The sites from the age before Stack Overflow and AI that taught me to code.'
 pubDate: 2025-10-31
 tags: ['development', 'nostalgia', 'stuff']

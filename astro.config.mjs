@@ -4,13 +4,17 @@ import { visit } from 'unist-util-visit';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import mdx from '@astrojs/mdx';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://swhitf.dev',
   base: '/',
+
   vite: {
     plugins: [tailwindcss()]
   },
+
   markdown: {
     rehypePlugins: [
       () => {
@@ -33,5 +37,7 @@ export default defineConfig({
         };
       }
     ]
-  }
+  },
+
+  integrations: [mdx()]
 });

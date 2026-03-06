@@ -1,0 +1,29 @@
+---
+interface Props {
+  pubDate: Date;
+  updatedDate?: Date;
+}
+
+const { pubDate, updatedDate } = Astro.props;
+
+function formatDate(date: Date) {
+  return new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<time datetime={pubDate.toISOString()}>
+  {formatDate(pubDate)}
+</time>
+
+{updatedDate && (
+  <>
+    <span>•</span>
+    <span>
+      Updated: {formatDate(updatedDate)}
+    </span>
+  </>
+)}

@@ -1,0 +1,44 @@
+---
+// QuickHullDemo - interactive convex hull visualisation
+// Uses the same geometry library as the Ludi whiteboard app
+---
+
+<div class="quickhull-demo" id="quickhull-container">
+  <canvas id="quickhull-canvas"></canvas>
+  <div class="quickhull-label-bar">
+    <span class="quickhull-label" id="quickhull-label"></span>
+  </div>
+</div>
+
+<style>
+  .quickhull-demo {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  #quickhull-canvas {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    cursor: crosshair;
+  }
+
+  .quickhull-label-bar {
+    display: flex;
+    justify-content: center;
+    padding: 10px 12px;
+  }
+
+  .quickhull-label {
+    font: 14px/1.3 system-ui, -apple-system, sans-serif;
+    background: #fcd34d;
+    color: #78350f;
+    padding: 4px 10px;
+  }
+</style>
+
+<script>
+  import { initQuickHullDemo } from '../../lib/toys/QuickHullDemo';
+  initQuickHullDemo('quickhull-container');
+</script>

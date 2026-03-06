@@ -1,83 +1,42 @@
 ---
 // Header Component
-import SayHelloButton from "./SayHelloButton.astro";
 import ContactModal from "./ContactModal.astro";
-
-const model = [
-  { v: "[", color: "text-teal-700 dark:text-teal-400", shrink: true },
-  { v: "s", color: "text-teal-700 dark:text-teal-400", shrink: false },
-  { v: "]", color: "text-teal-700 dark:text-teal-400", shrink: true },
-  { v: "teve", color: "text-gray-900 dark:text-white", shrink: true },
-  { v: " ", color: "text-gray-900 dark:text-white", shrink: true },
-  { v: "[", color: "text-teal-700 dark:text-teal-400", shrink: true },
-  { v: "whitf", color: "text-teal-700 dark:text-teal-400", shrink: false },
-  { v: "]", color: "text-teal-700 dark:text-teal-400", shrink: true },
-  { v: "ield", color: "text-gray-900 dark:text-white", shrink: true },
-  { v: " ", color: "text-gray-900 dark:text-white", shrink: true },
-  { v: "[", color: "text-teal-700 dark:text-teal-400", shrink: true },
-  { v: ".dev", color: "text-teal-700 dark:text-teal-400", shrink: false },
-  { v: "]", color: "text-teal-700 dark:text-teal-400", shrink: true },
-];
 ---
 
-<header class="sticky top-4 z-50 mb-12">
+<header>
   <div
     id="headerContent"
-    class="flex items-center justify-between w-full max-w-[1080px] mx-auto border border-transparent backdrop-blur-sm px-6 py-3 transition-all duration-300"
+    class="flex items-center justify-between max-w-4xl mx-auto px-6 py-3 border-x border-gray-200"
   >
     <!-- Logo/Brand -->
-    <div class="flex items-center gap-2">
-      <a
-        id="logo"
-        href="/"
-        class="text-xl font-bold hover:text-teal-400/80 transition-colors"
-      >
-        {
-          model.map((item) => (
-            <span data-shrink={item.shrink} data-set-width class={item.color}>
-              {item.v === " " ? <>&nbsp;</> : item.v}
-            </span>
-          ))
-        }
-      </a>
-      <button
-        id="logoToggle"
-        class="text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-white/20 rounded-full p-1.5 cursor-pointer "
-        style="transition: transform 0.3s ease;"
-        aria-label="Toggle logo"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-          <path fill-rule="evenodd" d="M17 10a.75.75 0 0 1-.75.75H5.612l4.158 3.96a.75.75 0 1 1-1.04 1.08l-5.5-5.25a.75.75 0 0 1 0-1.08l5.5-5.25a.75.75 0 1 1 1.04 1.08L5.612 9.25H16.25A.75.75 0 0 1 17 10Z" clip-rule="evenodd" />
-        </svg>
-      </button>
-    </div>
+    <a
+      href="/"
+      class="text-xl font-medium hover:text-gray-500 transition-colors"
+    >
+      <span class="text-accent-600">[s]</span><span class="text-neutral-900">teve</span>&nbsp;<span class="text-accent-600">[whitf]</span><span class="text-neutral-900">ield</span>&nbsp;<span class="text-accent-600">[.dev]</span>
+    </a>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:flex items-center gap-8">
+    <nav class="hidden md:flex items-center gap-1">
+      <a
+        href="/"
+        class="text-neutral-900 font-medium px-4 py-2 rounded-lg hover:bg-black/5 hover:text-accent-600 transition-all"
+        >Home</a
+      >
       <a
         href="/about"
-        class="text-gray-700 dark:text-white/90 font-medium hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
+        class="text-neutral-900 font-medium px-4 py-2 rounded-lg hover:bg-black/5 hover:text-accent-600 transition-all"
         >About</a
-      >
-      <a
-        href="/projects"
-        class="text-gray-700 dark:text-white/90 font-medium hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
-        >Projects</a
-      >
-      <a
-        href="/blog"
-        class="text-gray-700 dark:text-white/90 font-medium hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
-        >Blog</a
       >
 
       <!-- Social Icons -->
-      <div class="flex items-center gap-3 ml-4 border-l border-gray-300 dark:border-white/20 pl-4">
+      <div class="flex items-center gap-1 ml-3 border-l border-gray-200 pl-3">
         <a
           href="https://github.com/swhitf"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
-          class="text-gray-600 dark:text-white/60 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
+          class="text-neutral-600 p-2 rounded-lg hover:bg-black/5 hover:text-accent-600 transition-all"
         >
           <svg viewBox="0 0 24 24" width="20" height="20">
             <path
@@ -91,7 +50,7 @@ const model = [
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
-          class="text-gray-600 dark:text-white/60 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
+          class="text-neutral-600 p-2 rounded-lg hover:bg-black/5 hover:text-accent-600 transition-all"
         >
           <svg viewBox="0 0 24 24" width="20" height="20">
             <path
@@ -103,7 +62,7 @@ const model = [
         <a
           href="mailto:hello@swhitf.dev"
           aria-label="Email"
-          class="text-gray-600 dark:text-white/60 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
+          class="text-neutral-600 p-2 rounded-lg hover:bg-black/5 hover:text-accent-600 transition-all"
         >
           <svg viewBox="0 0 24 24" width="20" height="20">
             <path
@@ -113,33 +72,16 @@ const model = [
           </svg>
         </a>
       </div>
-
-      <!-- Theme Toggle Button -->
-      <button
-        id="themeToggle"
-        class="p-2 rounded-lg hover:bg-white/10 dark:hover:bg-white/10 transition-colors"
-        aria-label="Toggle theme"
-      >
-        <svg id="sunIcon" class="w-5 h-5 text-white/60 hover:text-teal-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-        </svg>
-        <svg id="moonIcon" class="w-5 h-5 text-gray-700 hover:text-teal-700 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-        </svg>
-      </button>
-
-      <!-- CTA Button -->
-      <SayHelloButton />
     </nav>
 
     <!-- Mobile Menu Button -->
     <button
       id="mobileMenuBtn"
-      class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-white/10 transition-colors"
+      class="md:hidden p-2 rounded-lg hover:bg-black/5 transition-colors"
       aria-label="Toggle menu"
     >
       <svg
-        class="w-6 h-6 text-gray-700 dark:text-white"
+        class="w-6 h-6 text-neutral-900"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -156,34 +98,29 @@ const model = [
   <!-- Mobile Menu -->
   <div
     id="mobileMenu"
-    class="hidden md:hidden mt-2 rounded-2xl border border-gray-300 dark:border-white/20 backdrop-blur-sm shadow-lg overflow-hidden bg-white/90 dark:bg-transparent"
+    class="hidden md:hidden mt-2 rounded-2xl border border-gray-200 backdrop-blur-sm shadow-lg overflow-hidden bg-white/90"
   >
     <nav class="flex flex-col p-4">
       <a
+        href="/"
+        class="py-3 text-neutral-900 font-medium hover:text-accent-600 hover:bg-black/5 px-4 rounded-lg transition-all"
+        >Home</a
+      >
+      <a
         href="/about"
-        class="py-3 text-gray-700 dark:text-white/90 font-medium hover:text-teal-700 dark:hover:text-teal-400 hover:bg-gray-100 dark:hover:bg-white/5 px-4 rounded-lg transition-colors"
+        class="py-3 text-neutral-900 font-medium hover:text-accent-600 hover:bg-black/5 px-4 rounded-lg transition-colors"
         >About</a
-      >
-      <a
-        href="/projects"
-        class="py-3 text-gray-700 dark:text-white/90 font-medium hover:text-teal-700 dark:hover:text-teal-400 hover:bg-gray-100 dark:hover:bg-white/5 px-4 rounded-lg transition-colors"
-        >Projects</a
-      >
-      <a
-        href="/blog"
-        class="py-3 text-gray-700 dark:text-white/90 font-medium hover:text-teal-700 dark:hover:text-teal-400 hover:bg-gray-100 dark:hover:bg-white/5 px-4 rounded-lg transition-colors"
-        >Blog</a
       >
 
       <div
-        class="flex items-center justify-center gap-6 my-4 pt-4 border-t border-gray-300 dark:border-white/20"
+        class="flex items-center justify-center gap-2 my-4 pt-4 border-t border-gray-200"
       >
         <a
           href="https://github.com/swhitf"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
-          class="text-gray-600 dark:text-white/60 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
+          class="text-neutral-600 p-2 rounded-lg hover:bg-black/5 hover:text-accent-600 transition-all"
         >
           <svg viewBox="0 0 24 24" width="24" height="24">
             <path
@@ -197,7 +134,7 @@ const model = [
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
-          class="text-gray-600 dark:text-white/60 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
+          class="text-neutral-600 p-2 rounded-lg hover:bg-black/5 hover:text-accent-600 transition-all"
         >
           <svg viewBox="0 0 24 24" width="24" height="24">
             <path
@@ -209,7 +146,7 @@ const model = [
         <a
           href="mailto:hello@swhitf.dev"
           aria-label="Email"
-          class="text-gray-600 dark:text-white/60 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
+          class="text-neutral-600 p-2 rounded-lg hover:bg-black/5 hover:text-accent-600 transition-all"
         >
           <svg viewBox="0 0 24 24" width="24" height="24">
             <path
@@ -219,23 +156,6 @@ const model = [
           </svg>
         </a>
       </div>
-
-      <!-- Mobile Theme Toggle -->
-      <button
-        id="themeToggleMobile"
-        class="w-full py-3 px-4 rounded-lg hover:bg-white/5 dark:hover:bg-white/5 transition-colors flex items-center justify-center gap-2"
-        aria-label="Toggle theme"
-      >
-        <svg class="w-5 h-5 text-white/60 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-        </svg>
-        <svg class="w-5 h-5 text-gray-700 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-        </svg>
-        <span class="text-white/90 dark:text-white/90 font-medium">Toggle Theme</span>
-      </button>
-
-      <SayHelloButton variant="mobile" />
     </nav>
   </div>
 </header>
@@ -262,109 +182,4 @@ const model = [
     }
   });
 
-  // Logo toggle functionality
-  const headerContent = document.getElementById("headerContent");
-  const logo = document.getElementById("logo");
-  const logoToggle = document.getElementById("logoToggle");
-
-  // Load collapse state from localStorage
-  let isCollapsed = localStorage.getItem("logoCollapsed") === "true";
-
-  function updateHeaderStyle() {
-    const scrollPosition = window.scrollY;
-
-    if (scrollPosition > 20) {
-      headerContent?.classList.remove(
-        "border-transparent",
-        "w-full",
-        "max-w-[1080px]"
-      );
-      headerContent?.classList.add(
-        "border-gray-200",
-        "shadow-sm",
-        "rounded-2xl",
-        "max-w-[960px]"
-      );
-    } else {
-      headerContent?.classList.remove(
-        "border-gray-200",
-        "shadow-sm",
-        "rounded-2xl",
-        "max-w-[960px]"
-      );
-      headerContent?.classList.add(
-        "border-transparent",
-        "w-full",
-        "max-w-[1080px]"
-      );
-    }
-  }
-
-  // Toggle logo collapse on button click
-  logoToggle?.addEventListener("click", () => {
-    isCollapsed = !isCollapsed;
-    localStorage.setItem("logoCollapsed", isCollapsed.toString());
-    updateLogoStyle();
-    updateArrowState();
-  });
-
-  function updateArrowState() {
-    if (!logoToggle) return;
-
-    // Rotate arrow and change color
-    if (isCollapsed) {
-      logoToggle.style.transform = "rotate(180deg)";
-      logoToggle.classList.remove("text-gray-700", "dark:text-white");
-      logoToggle.classList.add("text-teal-700", "dark:text-teal-400");
-    } else {
-      logoToggle.style.transform = "rotate(0deg)";
-      logoToggle.classList.remove("text-teal-700", "dark:text-teal-400");
-      logoToggle.classList.add("text-gray-700", "dark:text-white");
-    }
-  }
-
-  const logoElements = document.querySelectorAll("[data-set-width]");
-    logoElements.forEach((element) => {
-      const width = Math.ceil(element.getBoundingClientRect().width) ;
-      (element as HTMLElement).dataset.width = `${width}`;
-      (element as HTMLElement).style.width = `${width}px`;
-    });
-
-  function updateLogoStyle() {
-    const logoElements = document.querySelectorAll("[data-set-width]");
-    logoElements.forEach((element) => {
-      const shrink = (element as HTMLElement).dataset.shrink === "true";
-      const width = isCollapsed && shrink ? "0" : (element as HTMLElement).dataset.width;
-      (element as HTMLElement).style.width = `${width}px`;
-      (element as HTMLElement).style.opacity = isCollapsed && shrink ? "0" : "1";
-    });
-  }
-
-  // Listen for scroll events
-  window.addEventListener("scroll", updateHeaderStyle);
-
-  // Check initial state
-  updateHeaderStyle();
-  updateLogoStyle();
-  updateArrowState();
-
-  // Theme toggle functionality
-  const themeToggle = document.getElementById("themeToggle");
-  const themeToggleMobile = document.getElementById("themeToggleMobile");
-
-  function toggleTheme() {
-    const html = document.documentElement;
-    const isDark = html.classList.contains("dark");
-
-    if (isDark) {
-      html.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    } else {
-      html.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    }
-  }
-
-  themeToggle?.addEventListener("click", toggleTheme);
-  themeToggleMobile?.addEventListener("click", toggleTheme);
 </script>
