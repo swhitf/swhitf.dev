@@ -13,7 +13,8 @@ type State = {
     complete: boolean;
 };
 
-const NOTE_SIZE = 100;
+const noteSize = (bounds: Rect): number =>
+    Math.round(Math.max(40, Math.min(120, Math.min(bounds.width, bounds.height) * 0.15)));
 const MAX_PLACEMENT_ATTEMPTS = 500;
 
 const STICKY_COLORS = [
@@ -27,9 +28,10 @@ const STICKY_COLORS = [
     '#a5f3fc', // cyan
 ];
 
-/** Place up to 8 non-overlapping 100x100 rects within bounds. */
+/** Place up to 8 non-overlapping rects within bounds, sized proportionally. */
 const createInitialRects = (bounds: Rect): Rect[] => {
-    const placeable = bounds.inflate(-NOTE_SIZE / 2 - 10);
+    const size = noteSize(bounds);
+    const placeable = bounds.inflate(-size / 2 - 10);
     const rects: Rect[] = [];
     let attempts = 0;
 
@@ -37,7 +39,7 @@ const createInitialRects = (bounds: Rect): Rect[] => {
         attempts++;
         const x = Math.random() * placeable.width + placeable.left;
         const y = Math.random() * placeable.height + placeable.top;
-        const candidate = new Rect(x - NOTE_SIZE / 2, y - NOTE_SIZE / 2, NOTE_SIZE, NOTE_SIZE);
+        const candidate = new Rect(x - size / 2, y - size / 2, size, size);
 
         if (rects.some(r => r.intersects(candidate))) continue;
         rects.push(candidate);

@@ -10,13 +10,13 @@ const { interactive, description } = Astro.props;
 <div class="w-full my-8">
   {interactive && (
     <div class="flex items-center gap-4 border border-b-0 border-gray-200 bg-transparent p-1.5 text-xs">
-      <span class="flex items-center gap-1.5 bg-amber-300 text-amber-900 font-semibold px-2.5 py-1 text-sm">
+      <span class="callout-label flex items-center gap-1.5 bg-amber-300 text-amber-900 font-semibold px-2.5 py-1 text-sm">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
           <path d="M4.768 3.147a.5.5 0 01.524-.012l9 5.5a.5.5 0 01-.004.872l-3.601 2.085 3.032 4.24a.5.5 0 01-.122.695l-1.627 1.163a.5.5 0 01-.695-.122l-3.032-4.24-2.79 2.393a.5.5 0 01-.827-.318l-1.2-11.5a.5.5 0 01.342-.506z" />
         </svg>
         Interactive
       </span>
-      <span class="text-sm text-gray-500">{interactive}</span>
+      <span class="callout-hint text-sm text-gray-500">{interactive}</span>
     </div>
   )}
   <div class="relative border border-gray-200 bg-white overflow-hidden [&_img]:!m-0 [&_iframe]:!m-0 [&_video]:!m-0">
@@ -28,3 +28,14 @@ const { interactive, description } = Astro.props;
     )}
   </div>
 </div>
+
+<style>
+  @media (max-width: 540px) {
+    .callout-label {
+      font-size: 0.75rem;
+    }
+    .callout-hint {
+      font-size: 0.625rem;
+    }
+  }
+</style>
