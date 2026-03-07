@@ -14,15 +14,15 @@ import AABBDistanceDemo from '../../components/toys/AABBDistanceDemo.astro';
 import LudiEmbed from '../../components/LudiEmbed.astro';
 import Topics1 from '../../assets/blog/topics-1.png';
 
-A couple of years ago, during a feedback call, one of our customers was telling us how much they liked the Topic Tool in Ludi. I clearly remember him saying:
+A couple of years ago, during a feedback call, a customer was telling us how much they liked the Topic Tool in Ludi. I clearly remember him saying:
 
 > It's so cool — I'm a backend dev, so drawing a line around a bunch of boxes... I have no idea how you do that!
 
-It's taken me a while, but that conversation has finally inspired this article, in which I'll walk through the process of building the topic tool and the iterations it's been through.
+That conversation inspired this article, in which I'll walk through how I built the topic tool and the iterations it's been through.
 
 ## What's a Topic?
 
-In Ludi, a Topic is a whiteboard element that you can use to group related sticky notes or cards together. When groupable objects are placed near a topic, it will automatically bring them within its aura and draw a nice looking curvy line around them.  It feels very natural to use and is great for visually segmenting information.  
+In Ludi, a Topic is an element used for grouping related sticky notes or cards together. When groupable objects are placed nearby, it automatically draws a curvy line around them. It feels natural to use and is great for visually segmenting information.  
 
 Give them a try below:
 
@@ -30,11 +30,11 @@ Give them a try below:
   <LudiEmbed buildId="blog-htdalaabob" file="topic-demo.json" options="camera=auto" />
 </ArticleCallout>
 
-To make the Topic work properly, we use a combination of techniques and algorithms that I've iterated on several times over the years.  In this post, I'll walk you through how it all works and how we've improved it over the years.
+To make Topics work, we use a combination of techniques and algorithms that I've iterated on over the years. I'll walk through how it all works and how we've improved it.
 
 ## Background
 
-Ludi first launched a few years ago under the name Metro Retro.  It was a whiteboard tool for running retrospectives.  Some of our earlier users were kind enough to let me sit in on their meetings and observe.  After a few rounds of observation, I noted that users were regularly clustering sticky notes together by theme or topic, and using a text label next to them to describe what they were about.  
+Ludi launched a few years ago as Metro Retro, a whiteboard tool for running retrospectives. Some early users let me sit in on their meetings, during which I noticed they were regularly clustering sticky notes together by theme, with a text label to describe the group.  
 
 Excited by this emerging behavior, I set about designing a feature to help users formalise this behavior.  The objective was to create a new element type that would fulfil the following requirements:
 - Enable users to visually group sticky notes together
@@ -42,19 +42,19 @@ Excited by this emerging behavior, I set about designing a feature to help users
 - Be visually recognisable as a group
 - Not be slow and buggy (like duh)
 
-My solution for this was an element that automatically captured stickies when they were moved nearby, and then drew a line around them to create the visual grouping.  For this, I needed to solve two sub-problems:
+My solution was an element that captured stickies when moved nearby, then drew a nice looking line around them. For this, I needed to solve two sub-problems:
 1. How do we identify when one sticky is "near" a Topic element?
 2. How do we draw a line around them?
 
 ## Problem 1: Relating Stickies to Topics
 
-If we look in the picture below, we can see a bunch of Stickies grouped under a Topic on the left, and a few on the right that are not.  If you imagine for a moment that the Topic border is not visible, it would look obvious to our brains that the group on the left are all near or clustered around the Topic, and the ones on the right are not.  Our brains are great at this sort of stuff, but how do we codify the rules to make a computer do the same? 
+In the picture below, there's a bunch of Stickies grouped under a Topic on the left, and a few on the right that aren't. Imagine the Topic border isn't visible. It's obvious to us that the left group is clustered around the Topic and the right ones aren't. Our brains are great at this, but how do we make a computer do the same? 
 
 <ArticleCallout>
 <img src={Topics1.src} alt="Picture of the two clusters" style={{ maxWidth: "100%", height: "auto" }} />
 </ArticleCallout>
 
-Well, we can easily measure the distance between two rectangles using [AABB](https://en.wikipedia.org/wiki/Minimum_bounding_box#Axis-aligned_minimum_bounding_box) distance checking.  Let's define "near" as meaning `<= 100px`.  If we were to process the AABB distance between all the Stickies and the Topic, we'd compute that:
+We can measure the distance between two rectangles using [AABB](https://en.wikipedia.org/wiki/Minimum_bounding_box#Axis-aligned_minimum_bounding_box) distance checking. Let's define "near" as `<= 100px`. If we compute the AABB distance between each Sticky and the Topic, we'd find:
 - Stickies 1, 2, 5, 7 & 8 are **near** to the Topic (clearly less than 100px away)
 - Stickies 3, 4, 6, 9 are **not near** to the Topic (way more than 100px away)
 
@@ -62,16 +62,16 @@ But what about #6?  It's not near the Topic using AABB distance, but it looks ve
 
 ### Attempt 1: Pathfinding
 
-So, we need to figure out if a Sticky is not just near a Topic, but also near a cluster of Stickies that are themselves near a Topic.  And, this needs to work for just a few Stickies and huge amounts of Stickies.
+So, we need to figure out if a Sticky is not just near a Topic, but also if it's near a cluster of Stickies that are themselves near a Topic. And this needs to work for a handful of Stickies or hundreds.
 
-Fortunately, this turns out to be a pretty straightforward pathfinding problem, if we use the following model:  
+Fortunately, this is a straightforward pathfinding problem with the these rules:  
 - We treat each Sticky/Topic as a node in a graph
 - We define edges (connections) between each Sticky/Topic and any other Sticky/Topic where the AABB distance between them is `<= 100px`
 - We treat Topics as goal nodes
 
 With this model, we can use [A*](https://en.wikipedia.org/wiki/A*_search_algorithm) to explore from each Sticky and determine if it should be part of a Topic cluster, and if so which one.  As long as it can find a path from a Sticky to the Topic, then we know that the Sticky is near the Topic cluster.  If not, then it is not near the Topic cluster.
 
-Here is an interactive demo of this approach in action.  Try dragging the Stickies around and see how the Topic boundary changes.  It works pretty well and is pretty close to the implementation I used in the first version of this feature (I lost the original code so had to remake it for this article).
+Here's an interactive demo of this in action. Drag the Stickies around and see how the paths are computed. This is close to what I shipped in the first version (I lost the original code so had to remake it for this article).
 
 <ArticleCallout interactive="Drag the Stickies around and see the assignment paths visualized.">
   <LudiEmbed buildId="blog-htdalaabob" file="legacy-topic-demo.json" options="v=true&lt=true" />
@@ -85,30 +85,30 @@ In situations where we have a very close Topic that is not actually connectable,
 [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) is arguably a better choice here, but I already had a working A* implementation from another project and when you have a hammer everything is a nail.
 </ArticleNote>
 
-After launching, this feature quickly became one of the most used in our early product.  Feedback was good, but over time, we would get complaints that it was sometimes difficult to control which Topic a Sticky was in, particularly in boards with a lot of Stickies that were all near each other.
+After launch, Topics quickly became one of our most-used features. But over time, some users complained it was hard to control which Topic a Sticky belonged to, especially on boards with a lot of Stickies that were all close together.
 
-Sometimes a user would position a Sticky in such a way that it would create a connection that was not previously possible (due to being over 100px away) and it would cause whole chunks of Stickies to flip to a different Topic.  You can see this happening in the demo below.  Try moving the marked Sticky to where the arrow is pointing.
+Sometimes positioning a Sticky would create a connection that was previously not possible (bridging the 100px gap) and cause whole chunks to flip to a different Topic. You can see this in the demo below. Try moving the marked Sticky to where the arrow is pointing.
 
 <ArticleCallout interactive="Drag the marked Sticky to the arrow and watch it steal a note from Good Ideas.">
   <LudiEmbed buildId="blog-htdalaabob" file="legacy-topic-problem-demo.json" options="lt=true" />
 </ArticleCallout>
 
-This problem is a fundamental flaw in the approach and not easy to work around without going back to the drawing board.  We could prevent Stickies being reassigned unless they were explicitly moved, but this would still mean they would potentially flip if the user moved them slightly.
+This is a fundamental flaw in the approach, not easily worked around. We could prevent reassignment unless a Sticky was explicitly moved, but even a small move could still cause a flip.
 
 ### Attempt 2: Asymmetric assign/unassign
 
 After spending some time playing with the working version, two things occurred to me;
 
-1. Assigning Stickies needed to be more deliberate.  In the first version, Stickies become assigned to a cluster when they come within 100px of any of the contents.  This feels a little too sensitive.  Assignment can happen without it always feeling like that is what the user explicitly wanted to do.
-2. Unassigning Stickies also needed to be more deliberate.  Stickies become unassigned when they fall out of that 100px distance to any of their peers.  If you happen to move a Sticky in such a way that it skirts between in and out of this 100px distance it would cause a Sticky to flip in and out of assignment and just feels bad.
+1. Assigning Stickies needed to be more deliberate. In the first version, Stickies join a cluster when they come within 100px of any member. This is too sensitive.  Assignment can happen without it feeling intentional.
+2. Unassigning also needed to be more deliberate. Stickies leave when they exceed 100px from any of their peers. If a move skirted that boundary, the Sticky would flip in and out of assignment rapidly, which feels bad.
 
 The approach I settled on was to use a different strategy for addition vs removal, instead of a single strategy of picking the nearest connected Topic.
 
-When assigning Stickies, detect whether the bounds of the Sticky intersects with the boundary (curvy line) that we draw around the Topic.  If it is, assign it.
+For assignment: check whether the Sticky's bounds intersect the Topic boundary. If so, assign it.
 
-When unassigning Stickies, stick with the pathfinding approach, but tweak it to just check for a path back to the already assigned Topic.  Further, make it so that the distance the user has to pull away is clearly beyond the boundary.
+For removal: keep pathfinding, but only check for a path back to the assigned Topic. Also, require the user to pull clearly beyond the boundary before unassigning.
 
-These changes result in an assign operation that requires the user to explicitly put the Sticky into the Topic's content boundary, which feels much more deliberate.  And, it requires the user to pull a Sticky a good distance away from its Topic to unassign it, again feeling more deliberate.
+Now assignment requires explicitly placing a Sticky inside the boundary, and removal requires pulling it well clear. Both feel much more deliberate.
 
 Here's the last demo again, but with this approach instead.  Try moving the marked Sticky to where the arrow is pointing again.
 
@@ -124,9 +124,9 @@ Now that we have covered Topic assignment, lets look at the second problem (and 
 
 Lets break the problem down.  Our inputs are a group of elements: Stickies and a Topic.  These can be reduced down into a bunch of bounding rectangles.  These can then be further reduced down into an array of points (from the box corners).
 
-Once we have the points, we need to compute a natural tight fitting border around the points, as if each point were a peg in the ground and the border was a resistance band wrapped around them.
+From these points, we compute tight fitting border around the points, as if each point were a peg in the ground and the border was a resistance band stretched around them.
 
-My math and geometry knowledge have improved a lot since starting Ludi, but in the beginning they were not my strong point.  My initial approach to this problem was so dumb that I can't handle the shame of writing about it here, so I'll just skip to the part where I Googled the problem and discovered the set of points I was after are known as the [Convex Hull](https://en.wikipedia.org/wiki/Convex_hull).  Also, there exists a neat algorithm to compute it called [QuickHull](https://en.wikipedia.org/wiki/Quickhull).
+My geometry knowledge has improved a lot since starting Ludi, but back then it was not my strong point. My initial approach was so dumb I can't handle the shame of writing about it, so I'll skip to the part where I Googled and discovered what I was after is called a [Convex Hull](https://en.wikipedia.org/wiki/Convex_hull). There's also a neat algorithm to compute it: [QuickHull](https://en.wikipedia.org/wiki/Quickhull).
 
 <ArticleInsight title="QuickHull in plain English">
 1. Find the leftmost and rightmost points.  These must be part of the hull. Draw a line between them, splitting points into two groups (above and below).
@@ -137,7 +137,7 @@ My math and geometry knowledge have improved a lot since starting Ludi, but in t
 The result is the convex hull.
 </ArticleInsight>
 
-Below is an interactive visualization of how QuickHull takes a bunch of points and filters them to only the ones that appear on the convex hull.  Before you try it, here some notes to help understand what is happening:
+Below is an interactive visualization of QuickHull in action. Before you try it, here some notes to help understand what is happening:
 
 - The process mentions capturing points "inside" and "outside" an "edge".  Edge means line segment in this case, and each segment is directed.  Inside means on the right of the line as per its direction and Outside means to the left.  I've added the segment direction to the visualization but it doesn't mean anything beyond this.
 - Once a triangle is produced, it will be processed clockwise and each time any segments that have points "outside" will be recursed.  Keeping this in mind when watching really helps to grok what is going on.
@@ -148,7 +148,7 @@ Below is an interactive visualization of how QuickHull takes a bunch of points a
 
 ### Rounding the hull
 
-Once we have the convex hull, a tight and visually unappealing polyline around the subject elements, all that is left is to make it look nice.  For this we want to do two things:
+The convex hull gives us a tight but ugly polyline around the elements. All that is left is to make it look nice, for which we do two things:
 1. Add some padding so the line sits away from the elements a bit
 2. Round the edges to soften everything up.
 
@@ -158,16 +158,16 @@ To add padding we inflate each of the Sticky/Topic bounding boxes by 20px before
 
 ### Rounding
 
-Once padded, we need to convert our context hull polyline to SVG Path Data to be rendered.  To do this with rounding, we iterate over each point and convert to a cubic bezier curve.  We generate the control points for the curve by using the normalized vectors to both the previous and next points in the sequence, multiplying these vectors by a constant (in this case 50px) and adding these to our original point.
+Next we convert the hull polyline to SVG Path Data. To add rounding, each point in the hull becomes a cubic bezier curve.  We generate the control points for each curve by using the normalized vectors to both the previous and next points in the sequence, multiplying these vectors by a constant (in this case 50px) and adding these to our original point.
 
-Just to break this down for anyone who hates geometry, for each a point:   
+Breaking this down for anyone who hates geometry, for each point:   
 1. Find the prev/next point (either -1 or +1 in the list)
 2. Compute vector from subject point to prev/next; a vector is a representation of direction and distance defined as an `x` and a `y` value
 3. Normalize the vector; change the vector so that it still represents a direction but with a distance of 1 (`x` and `y` will usually be a fraction of 1)
 4. With this normalized vector we can produce a new point, which is `D` distance away in the direction of the prev/next point by multiplying the normalized vector by `D` and adding to the original point
 5. In this case, we use `D=50px`, so `newPoint = oldPoint + (normalizedVector * 50)`
 
-The only fiddly bit is dealing with the last point, where you have to wrap around to the first for the next point.  Otherwise it's pretty easy.  Here's a demo where you can toggle on and off the padding to see how this looks:
+The only fiddly bit is the first/last points, where you wrap around to the end/start of the array. Otherwise it's pretty easy. Here's a demo where you can toggle on and off the padding to see how this looks:
 
 <ArticleCallout interactive="Demo of the padding and rounding with toggles.">
   <LudiEmbed buildId="blog-htdalaabob" file="topic-demo.json" options="toggles=true" />
@@ -177,15 +177,15 @@ And there you have it!
 
 ## Some Notes On Performance
 
-I haven't covered performance optimization in here, as while I think it's interesting, it would have made the article overly long.
+I don't want to go too much into performance here, as it would have made the article too long.
 
 That said, we do a number of things to ensure this all runs smoothly that I'll briefly list here:
 
-1. In the latest version, Topic assignment is computed per Sticky when a Sticky moves.  So if you move one Sticky at a time, it's gonna do one cycle of the logic per movement.  This is the most common case when users are working on boards, which has low overhead overall.
+1. Topic assignment is computed per Sticky when a Sticky moves.  So if you move one Sticky at a time, it's gonna do one cycle of the logic per movement.  This is the most common case when users are working on boards, which has low overhead overall.
 
 2. Ludi boards have no limit in size, so we use a spatial indexing system based on [rbush](https://github.com/mourner/rbush) that allows us to query for elements based on their location efficiently.  Topic assignment would die very quickly without this.
 
-3. We only do collision detection on the inflated polyline hull, not the rounded version, as it's a lot faster.  It does mean if you touch a corner that is rounded a Sticky can get added seemingly a little early, but I mean, who cares?  Not me!
+3. We only do collision detection on the inflated polyline hull, not the rounded version, as it's a lot faster.  It does mean if you touch a corner that is rounded a Sticky can get added seemingly a little early, but I mean... who cares?
 
 4. In addition to the spatial index, we maintain a Topic index which maps which elements are in which Topic.  This is kept up to date after all assignment operations so we can quickly and easily find which elements are on which Topic.
 
